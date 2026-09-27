@@ -146,7 +146,7 @@ def main():
             key="exercise-analysis",
             mode=WebRtcMode.SENDRECV,
             video_processor_factory=VideoProcessorClass,
-            rtc_configuration={"iceServers": [{"urls": ["stun:stun.l.google.com:19302"]}]},
+            rtc_configuration={ "iceServers": [ {"urls": ["stun:stun.l.google.com:19302"]}, { "urls": [os.environ.get("TURN_URL", "")], "username": os.environ.get("TURN_USERNAME", ""), "credential": os.environ.get("TURN_CREDENTIAL", ""), }, ] },
             media_stream_constraints={
                 "video": True,
                 "audio": False
